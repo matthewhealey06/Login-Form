@@ -39,8 +39,9 @@ body{
 }
 .inp-wrapper svg{
     position: absolute;
-    left: 90%;
-    top: 25%;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .wrapper input{
     width: 100%;
@@ -53,9 +54,11 @@ body{
     box-sizing: border-box;
     padding-left: 15px;
     color: #fff;
+    font-size: 1.1em;
 }
 input::placeholder{
     color: #fff;
+    font-size: 0.9em;
 }
 .wrapper .remember-forgot{
     margin-top: 30px;
@@ -66,12 +69,19 @@ input::placeholder{
 }
 .remember-forgot input{
     width: 15px;
+    cursor: pointer;
 }
 .wrapper button{
     width: 100%;
     border: none;
     border-radius: 40px;
     height: 40px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #e1d4e7;
+    transition: ease .5s;
+    transform: scale(1.01);
 }
 .wrapper .register{
     display: flex;
@@ -81,8 +91,22 @@ input::placeholder{
 }
 h1, a, p, label{
     text-decoration: none;
-    color: #fff;
+    color: #ffffff;
 }
 a{
     font-weight: 600;
+}
+@media(max-width:765px){
+    .wrapper{
+        width: min(600px, 100%);
+    }
+    .remember-forgot{
+        flex-direction: column;
+    }
+    p, a{
+        text-align: center;
+    }
+    .wrapper{
+        padding: 20px;
+    }
 }
