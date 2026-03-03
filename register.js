@@ -3,7 +3,6 @@ let username = document.getElementById('username')
 let email = document.getElementById('email')
 let password = document.getElementById('password')
 let repeatPass = document.getElementById('repeat-password')
-const rememberMe = document.getElementById('rememberMe')
 const submit = document.getElementById('submit')
 const errorMsg = document.getElementById('error-message')
 
@@ -65,5 +64,3 @@ password.addEventListener('input', () => {
 })
 repeatPass.addEventListener('input', () => {
     validateForm()})
-
-    localStorage.getItem('user')

@@ -14,6 +14,6 @@ submit.addEventListener('click', (e) => {
         window.location.href = 'welcome.html'
     }
     else{
-        errorMsg.textContent = 'Username & Password dont match'
+        errorMsg.textContent = 'Incorrect Username Or Password'
     }
 })

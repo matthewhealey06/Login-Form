@@ -1,0 +1,47 @@
+html, body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body{
+    background-image: url(purple.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.wrapper{
+    height: 100vh;
+}
+.text-content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    top: 30%;
+}
+h1, p{
+    color: #fff;
+}
+p{
+    font-size: 1.6em;
+}
+.return-anchor{
+    display: flex;
+    position: relative;
+    top: 40%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+a{
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid rgba(255,255,255,0.5);
+    padding: 10px;
+    border-radius: 50px;
+    font-size: 1.2em;
+}
