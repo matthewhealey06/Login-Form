@@ -1,8 +1,9 @@
 # Login/Register Form
 
-A user authentication UI with registration, login, and remember me functionality.
+A user authentication system with registration, login, and remember me functionality.
 
 ## Features
+
 - User registration with validation
 - Login with stored credentials
 - Remember me checkbox
@@ -10,10 +11,18 @@ A user authentication UI with registration, login, and remember me functionality
 - Responsive design with glassmorphism styling
 
 ## Built with
+
 - HTML
 - CSS
 - Vanilla JavaScript
-- LocalStorage for persistence
+- Node.js
+- Express
+- MongoDB
 
-## Note
-This is a frontend demo. In a real application, passwords would be hashed and stored securely on a backend server.
+## Setup
+
+1. Clone the repo
+2. Run `npm install`
+3. Create a `.env` file with your MongoDB connection string: `MONGODB_URI=your_connection_string`
+4. Run `node server.js`
+5. Visit `localhost:3000`
