@@ -25,3 +25,21 @@ mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("MongoDB connection error:", err));
+
+app.post("/api/login", (req, res) => {
+  const { username, password } = req.body;
+
+  User.findOne({ username: username })
+    .then((user) => {
+      if (user === null) {
+        res.json({ success: false, message: "User not found" });
+      } else if (user.password !== password) {
+        res.json({ success: false, message: "Wrong password" });
+      } else {
+        res.json({ success: true });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ error: "Server error" });
+    });
+});
