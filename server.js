@@ -1,18 +1,25 @@
 const express = require("express");
 const app = express();
 const User = require("./User");
+const bcrypt = require('bcrypt')
 
 app.use(express.static("public"));
 app.use(express.json());
 app.post("/api/register", (req, res) => {
   console.log(req.body);
-  User.create(req.body)
-    .then((user) => {
-      res.json({ message: "User created" });
+  bcrypt.hash(req.body.password, 10).then((hashedPassword) => {
+    User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: hashedPassword,
     })
-    .catch((err) => {
-      res.status(500).json({ error: "Failed to create user" });
-    });
+      .then((user) => {
+        res.json({ message: "User created" });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: "Failed to create user" });
+      });
+  });
 });
 
 app.listen(3000, () => {
@@ -33,10 +40,14 @@ app.post("/api/login", (req, res) => {
     .then((user) => {
       if (user === null) {
         res.json({ success: false, message: "User not found" });
-      } else if (user.password !== password) {
-        res.json({ success: false, message: "Wrong password" });
       } else {
-        res.json({ success: true });
+        bcrypt.compare(password, user.password).then((isMatch) => {
+          if (isMatch) {
+            res.json({ success: true });
+          } else {
+            res.json({ success: false, message: "Wrong password" });
+          }
+        });
       }
     })
     .catch((err) => {
