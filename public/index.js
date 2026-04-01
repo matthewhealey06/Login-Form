@@ -22,9 +22,21 @@ submit.addEventListener("click", (e) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
+        localStorage.setItem('user', JSON.stringify({ username: username.value }))
         window.location.href = "welcome.html";
       } else {
         errorMsg.textContent = data.message;
+      }
+      if (rememberMe.checked) {
+        localStorage.setItem(
+          "savedUser",
+          JSON.stringify({
+            username: username.value,
+            password: password.value,
+          }),
+        );
+      } else {
+        localStorage.removeItem("savedUser");
       }
     });
 });
