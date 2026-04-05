@@ -1,16 +1,26 @@
 const express = require("express");
 const app = express();
+app.disable("x-powered-by");
 const User = require("./User");
-const bcrypt = require('bcrypt')
+const bcrypt = require("bcrypt");
 
 app.use(express.static("public"));
 app.use(express.json());
 app.post("/api/register", (req, res) => {
+  const { username, email, password } = req.body;
+
+  if (
+    typeof username !== "string" ||
+    typeof email !== "string" ||
+    typeof password !== "string"
+  ) {
+    return res.status(400).json({ error: "Invalid input" });
+  }
   console.log(req.body);
-  bcrypt.hash(req.body.password, 10).then((hashedPassword) => {
+  bcrypt.hash(password, 10).then((hashedPassword) => {
     User.create({
-      username: req.body.username,
-      email: req.body.email,
+      username: username,
+      email: email,
       password: hashedPassword,
     })
       .then((user) => {
@@ -35,6 +45,10 @@ mongoose
 
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
+
+  if (typeof username !== "string" || typeof password !== "string") {
+    return res.status(400).json({ error: "Invalid input" });
+  }
 
   User.findOne({ username: username })
     .then((user) => {
